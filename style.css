@@ -21,9 +21,9 @@ body{
     margin:0;
     font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
     background:
-        radial-gradient(800px 800px at 10% 10%, rgba(138,43,226,0.20), transparent 60%),
-        radial-gradient(700px 700px at 90% 20%, rgba(196,113,245,0.18), transparent 60%),
-        radial-gradient(900px 900px at 50% 100%, rgba(138,43,226,0.16), transparent 60%),
+        radial-gradient(800px 800px at 10% 10%, rgba(106, 3, 93, 0.2), transparent 60%),
+        radial-gradient(700px 700px at 90% 20%, rgba(58, 8, 50, 0.18), transparent 60%),
+        radial-gradient(900px 900px at 50% 100%, rgba(93, 26, 144, 0.16), transparent 60%),
         var(--bg);
     color:var(--text);
     line-height:1.6;
@@ -106,6 +106,19 @@ button,input,textarea,select{font:inherit;color:inherit}
 .card-body{padding:18px}
 .card-title{margin:0 0 8px}
 .card-text{color:var(--muted);margin:0 0 14px}
+
+/* Skills */
+.skills .skills-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:24px}
+.skill-card{background:linear-gradient(var(--surface-2), var(--surface-2)) padding-box, var(--gradient) border-box;border:1px solid transparent;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.skill-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:6px 10px;border-radius:999px;font-size:.85rem;background:linear-gradient(var(--surface), var(--surface)) padding-box, var(--gradient) border-box;border:1px solid transparent;color:var(--text)}
+.meters{display:flex;flex-direction:column;gap:12px}
+.meter{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.meter span{color:var(--muted)}
+.meter em{font-style:normal;color:var(--muted)}
+.meter .bar{position:relative;height:10px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid var(--border)}
+.meter .bar i{position:absolute;inset:0 100% 0 0;background:var(--gradient);box-shadow:0 0 20px rgba(196,113,245,.45) inset, 0 0 12px rgba(138,43,226,.35);}
 
 /* Contact */
 .contact-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px}

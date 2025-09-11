@@ -63,6 +63,20 @@ const obs = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting){
             entry.target.classList.add('is-visible');
+            // Animate skill meters when their card becomes visible
+            if (entry.target.classList.contains('skill-card')){
+                const meters = entry.target.querySelectorAll('.meter');
+                meters.forEach((m) => {
+                    const level = Number(m.getAttribute('data-level') || 0);
+                    const bar = m.querySelector('.bar i');
+                    if (bar){
+                        bar.animate([
+                            { inset: '0 100% 0 0' },
+                            { inset: `0 ${100 - level}% 0 0` }
+                        ], { duration: 900, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards', delay: 120 });
+                    }
+                });
+            }
             obs.unobserve(entry.target);
         }
     });
