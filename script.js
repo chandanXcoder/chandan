@@ -83,6 +83,35 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.16 });
 revealEls.forEach((el) => obs.observe(el));
 
+// Scrollspy: highlight active nav link based on section in view
+const sectionIds = ['home','about','skills','portfolio','contact'];
+const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+const links = Array.from(document.querySelectorAll('.site-nav .nav-link'));
+const linkById = new Map(links.map(l => [l.getAttribute('href').slice(1), l]));
+
+const spy = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        const id = entry.target.id;
+        const link = linkById.get(id);
+        if (!link) return;
+        if (entry.intersectionRatio > 0.6){
+            links.forEach(a => a.classList.remove('active'));
+            link.classList.add('active');
+        }
+    });
+}, { threshold: [0.6, 0.9] });
+sectionEls.forEach(el => spy.observe(el));
+
+// Card hover spotlight position
+document.addEventListener('mousemove', (e) => {
+    const card = e.target.closest('.card');
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const mx = ((e.clientX - rect.left) / rect.width) * 100;
+    const my = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mx', mx + '%');
+    card.style.setProperty('--my', my + '%');
+});
 // Contact form simple validation + fake submit handler
 const form = document.getElementById('contact-form');
 if (form){

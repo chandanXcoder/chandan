@@ -29,6 +29,8 @@ body{
     line-height:1.6;
     scroll-behavior:smooth;
 }
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{left:16px;top:16px;width:auto;height:auto;padding:8px 12px;border-radius:8px;background:var(--gradient);color:#0a0a0f;z-index:2000}
 
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -56,6 +58,8 @@ button,input,textarea,select{font:inherit;color:inherit}
 .nav-link{position:relative;padding:8px 2px}
 .nav-link::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gradient);transition:width .3s ease}
 .nav-link:hover::after,.nav-link:focus-visible::after{width:100%}
+.nav-link.active{color:#fff}
+.nav-link.active::after{width:100%}
 
 .nav-toggle{display:none;flex-direction:column;gap:5px;background:transparent;border:0;cursor:pointer}
 .nav-toggle span{width:26px;height:2px;background:var(--text);border-radius:2px}
@@ -79,6 +83,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(196,113,245,.5)}
 .btn-ghost{background:linear-gradient(var(--surface-2), var(--surface-2)) padding-box, var(--gradient) border-box;border:1px solid transparent}
 .btn-ghost:hover{background:linear-gradient(var(--surface), var(--surface)) padding-box, var(--gradient) border-box;box-shadow:var(--shadow)}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,255,255,.2), 0 0 0 5px rgba(196,113,245,.6)}
 
 .socials{display:flex;gap:14px;margin-top:28px}
 .social-link{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:var(--glass);border:1px solid var(--border);box-shadow:inset 0 0 0 0 rgba(196,113,245,.35);transition:box-shadow .25s ease, transform .2s ease}
@@ -102,6 +107,8 @@ button,input,textarea,select{font:inherit;color:inherit}
 .card-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:24px}
 .card{display:flex;flex-direction:column;background:linear-gradient(var(--surface-2), var(--surface-2)) padding-box, var(--gradient) border-box;border:1px solid transparent;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transform:translateY(0);transition:transform .25s ease, box-shadow .25s ease}
 .card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(138,43,226,.35)}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(120px 80px at var(--mx,50%) var(--my,50%), rgba(196,113,245,.12), transparent 60%);pointer-events:none;opacity:0;transition:opacity .2s ease}
+.card:hover::after{opacity:1}
 .card-image{width:100%;height:180px;object-fit:cover}
 .card-body{padding:18px}
 .card-title{margin:0 0 8px}
@@ -158,6 +165,11 @@ input:focus,textarea:focus{border-color:transparent;box-shadow:0 0 0 2px rgba(19
     .site-nav.is-open{opacity:1;pointer-events:auto;transform:none}
     .nav-toggle{display:flex}
     .card-grid{grid-template-columns:1fr}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
 }
 
 
