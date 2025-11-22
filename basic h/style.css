@@ -1,0 +1,18 @@
+nav{
+    text-align: center;
+    color: rgb(119, 25, 25);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(106, 22, 22);
+    border-radius: 10px;
+}
+h1{
+    text-align: center;
+    color: rgb(119, 25, 25);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 1px;
+    border: 10px solid rgb(106, 22, 22);
+    border-radius: 10px;
+}
