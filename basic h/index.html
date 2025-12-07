@@ -1,36 +1,410 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic HTML</title>
-    <link rel="stylesheet" href="style.css">
-</head> 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Normal HTML Template</title>
 
+  <!-- Google Font (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0f172a;
+      --card: #0b1220;
+      --muted: #94a3b8;
+      --accent: #06b6d4;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 12px;
+      --max-width: 1100px;
+      color-scheme: dark;
+    }
+
+    /* Basic reset */
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#071023 0%, #07162a 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding: 24px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+    }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--accent), #8b5cf6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:18px;
+      box-shadow:0 6px 20px rgba(6,182,212,0.08);
+    }
+
+    nav{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:8px;
+      font-weight:600;
+      transition: all .15s ease;
+    }
+
+    nav a:hover{ color: white; background: var(--glass); }
+
+    .cta{
+      background: linear-gradient(90deg,var(--accent), #7c3aed);
+      color: #041127;
+      padding:8px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 6px 18px rgba(7,21,40,0.35);
+    }
+
+    main{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:24px;
+    }
+
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      padding:28px;
+      display:flex;
+      gap:24px;
+      align-items:center;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+    }
+
+    .hero .left{
+      flex:1;
+    }
+
+    .eyebrow{
+      color:var(--accent);
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:0.6px;
+      margin-bottom:8px;
+    }
+
+    .hero h1{
+      margin:0 0 10px 0;
+      font-size:28px;
+      line-height:1.05;
+    }
+
+    .hero p{
+      margin:0 0 16px 0;
+      color:var(--muted);
+    }
+
+    .hero .actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:16px;
+    }
+
+    .card{
+      background: rgba(255,255,255,0.02);
+      border-radius:14px;
+      padding:16px;
+      min-height:110px;
+      transition: transform .15s ease, box-shadow .15s ease;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+
+    .card:hover{ transform: translateY(-6px); box-shadow: 0 12px 32px rgba(2,6,23,0.6); }
+
+    .card h3{ margin:0 0 8px 0; font-size:16px; }
+    .card p{ margin:0; color:var(--muted); font-size:14px; }
+
+    footer{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      color:var(--muted);
+    }
+
+    /* Contact form styles */
+    form{
+      display:grid;
+      gap:12px;
+      max-width:540px;
+    }
+
+    label{ font-size:13px; color:var(--muted); }
+    input[type="text"], input[type="email"], textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.02);
+      color:inherit;
+      outline:none;
+      font-size:14px;
+    }
+
+    textarea{ min-height:110px; resize:vertical; }
+
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:10px;
+      background:linear-gradient(90deg,var(--accent), #7c3aed);
+      color:#041127;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+    }
+
+    .small{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    /* Responsive layout */
+    @media (min-width:900px){
+      main{
+        grid-template-columns: 1fr 380px;
+        align-items:start;
+      }
+
+      .hero{ padding:36px; }
+      .hero h1{ font-size:34px; }
+    }
+
+    /* Utilities */
+    .muted { color: var(--muted); }
+    .chip{
+      display:inline-block;
+      padding:6px 10px;
+      background: rgba(255,255,255,0.02);
+      border-radius:999px;
+      font-weight:600;
+      font-size:13px;
+    }
+  </style>
+</head>
 <body>
-  
-<header>
-  <nav>
-        <a href="google.com">Home</a>
-        <a href="google.com">About</a>
-        <a href="google.com">Contact</a>
-        <a href="google.com">Services</a>
-    </nav>
-    <h1>dhruv bhai</h1>
-    <p>dhruv bhai is a good boy</p>
-    <p>i am a coder.</p>
-    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" width="100px" height="100px">
-</header>
+  <div class="container" role="main">
+    <header>
+      <a class="brand" href="#" aria-label="Homepage">
+        <div class="logo" aria-hidden="true">N</div>
+        <div>
+          <div style="font-weight:700">Normal HTML</div>
+          <div style="font-size:12px;color:var(--muted)">A minimal starter</div>
+        </div>
+      </a>
 
-<footer>  
-     made by chandan verma  sfsfsifsfhs9 </footer>
+      <nav aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#examples">Examples</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="#get-started">Get started</a>
+      </nav>
+    </header>
 
+    <main>
+      <!-- Left column: hero + features -->
+      <section>
+        <div class="hero" role="region" aria-labelledby="hero-heading">
+          <div class="left">
+            <div class="eyebrow">Starter template</div>
+            <h1 id="hero-heading">Simple, accessible, and ready to use.</h1>
+            <p>Responsive single-file HTML with clean CSS and a few JS helpers. Great for prototypes, demos, or learning.</p>
 
+            <div class="actions" style="margin-top:12px;">
+              <a class="cta" href="#get-started">Download</a>
+              <a href="#examples" style="padding:8px 12px;border-radius:10px;background:transparent;color:var(--muted);text-decoration:none;font-weight:700">View examples</a>
+            </div>
+          </div>
 
+          <div style="width:320px; max-width:40%;">
+            <div class="card" aria-hidden="false">
+              <h3>Built-in contact form</h3>
+              <p class="muted">Includes minimal client-side validation and success feedback.</p>
+            </div>
 
+            <div style="height:12px"></div>
 
+            <div class="card">
+              <h3>Responsive grid</h3>
+              <p class="muted">Cards automatically reflow on small screens using CSS grid and auto-fit.</p>
+            </div>
+          </div>
+        </div>
 
+        <h2 id="features" style="margin-top:20px">Core features</h2>
+        <div class="grid" style="margin-top:12px;">
+          <div class="card">
+            <h3>Accessible markup</h3>
+            <p>Semantic HTML, ARIA where useful, and readable structure.</p>
+          </div>
 
+          <div class="card">
+            <h3>Responsive layout</h3>
+            <p>Works on phones, tablets, and desktop without external dependencies.</p>
+          </div>
 
+          <div class="card">
+            <h3>Minimal JS</h3>
+            <p>Small scripts only where necessary — no frameworks required.</p>
+          </div>
+
+          <div class="card">
+            <h3>Easily customizable</h3>
+            <p>Colors, fonts, and spacing are centralized in CSS variables.</p>
+          </div>
+        </div>
+
+        <h2 id="examples" style="margin-top:20px">Examples</h2>
+        <div class="grid" style="margin-top:12px;">
+          <div class="card">
+            <h3>Profile card</h3>
+            <p class="muted">A compact component for user summaries or author bios.</p>
+          </div>
+
+          <div class="card">
+            <h3>Pricing / features</h3>
+            <p class="muted">Use the grid to present pricing tiers or product features.</p>
+          </div>
+
+          <div class="card">
+            <h3>Docs / blog</h3>
+            <p class="muted">Clean reading experience for long-form content.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right column: contact form -->
+      <aside aria-labelledby="contact" id="contact">
+        <h2 style="margin:0 0 8px 0">Contact</h2>
+        <p class="small" style="margin:0 0 12px 0">Send a quick message — this form uses client-side validation only.</p>
+
+        <form id="contactForm" novalidate>
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+          </div>
+
+          <div>
+            <button type="submit" class="btn">Send message</button>
+          </div>
+
+          <div id="formFeedback" class="small" aria-live="polite" style="margin-top:8px;color:var(--muted)"></div>
+        </form>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="small">© <span id="year"></span> Normal HTML — Made with care</div>
+      <div class="small">Theme <span class="chip">Dark</span></div>
+    </footer>
+  </div>
+
+  <script>
+    // Set year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple contact form validation + feedback (no network request)
+    (function(){
+      const form = document.getElementById('contactForm');
+      const feedback = document.getElementById('formFeedback');
+
+      function validateEmail(email){
+        // conservative email test
+        return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        feedback.style.color = 'var(--muted)';
+
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+
+        if(!name || !email || !message){
+          feedback.textContent = 'Please fill all fields.';
+          return;
+        }
+
+        if(!validateEmail(email)){
+          feedback.textContent = 'Please enter a valid email address.';
+          return;
+        }
+
+        // Simulate success
+        feedback.style.color = 'lightgreen';
+        feedback.textContent = 'Thanks — your message was "sent". (This is a demo only.)';
+
+        // reset after a short delay to let the user read the message
+        setTimeout(() => {
+          form.reset();
+          feedback.style.color = 'var(--muted)';
+          feedback.textContent = '';
+        }, 2200);
+      });
+    })();
+  </script>
 </body>
 </html>
